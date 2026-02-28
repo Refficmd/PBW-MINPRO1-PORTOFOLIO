@@ -1,0 +1,233 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 15% 30%, rgba(123,44,191,0.25), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(90,24,154,0.25), transparent 40%),
+    linear-gradient(135deg,#0f0c29,#1a133a,#120e2a);
+  background-attachment: fixed;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding-top: 80px;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+/* == NAVBAR == */
+
+.custom-navbar {
+  background: #141026;
+}
+
+.nav-link.active {
+  color: #9d4edd !important;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: #9d4edd;
+  border-radius: 10px;
+}
+
+
+/* == HERO SECTION == */
+
+.hero {
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg,#9d4edd,#5a189a);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.cursor {
+  color: #9d4edd;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* == ABOUT SECTION == */
+
+.about-greeting {
+  background: linear-gradient(45deg,#9d4edd,#c77dff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Profile Image */
+.profile-wrapper {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  padding: 6px;
+  margin: auto;
+  background: linear-gradient(45deg,#7b2cbf,#9d4edd);
+  box-shadow: 0 0 25px rgba(157,78,221,0.8);
+}
+
+@media (min-width: 768px) {
+  .profile-wrapper {
+    margin-left: 0;
+  }
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Skills */
+.bg-purple {
+  background: linear-gradient(45deg,#7b2cbf,#9d4edd);
+}
+
+.progress {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+}
+
+
+/* == BUTTON == */
+
+.btn-glow {
+  background: linear-gradient(45deg,#7b2cbf,#9d4edd);
+  border: none;
+  box-shadow: 0 0 20px rgba(157,78,221,0.6);
+}
+
+
+/* == STATS / GLASS CARDS == */
+
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+
+/* == SHOWCASE SECTION == */
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tab-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 25px;
+  border-radius: 12px;
+  color: white;
+}
+
+.tab-btn.active {
+  background: linear-gradient(45deg,#7b2cbf,#9d4edd);
+  box-shadow: 0 0 20px rgba(157,78,221,0.6);
+}
+
+/* Portfolio Cards */
+.portfolio-card {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Experience Cards */
+.experience-item {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+  border-left: 4px solid #9d4edd;
+  backdrop-filter: blur(6px);
+}
+
+
+/* == CONTACT SECTION == */
+
+.contact-card {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  max-width: 500px;
+}
+
+.contact-item {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 0;
+  transition: 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.contact-item i {
+  margin-right: 10px;
+  color: #9d4edd;
+}
+
+.contact-item:hover {
+  color: #9d4edd;
+  transform: translateY(-2px);
+}
+
+
+/* == TRANSITIONS == */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.35s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}

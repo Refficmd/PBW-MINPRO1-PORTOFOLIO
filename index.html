@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jameszin</title>
+
+  <!-- == BOOTSTRAP == -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- == CUSTOM CSS == -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- == VUE ==-->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+
+<body>
+<div id="app">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">Reffi</a>
+
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#showcase">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+
+  <section id="home" class="hero text-center">
+    <div class="container">
+
+      <h1 class="hero-welcome">Welcome To My</h1>
+
+      <h1 class="hero-title">
+        <span class="gradient-text">{{ typedText }}</span>
+        <span class="cursor">|</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Frontend Developer & Information System Student<br>
+        Tertarik belajar website dan basis data modern.
+      </p>
+
+      <div class="mt-4">
+        <a href="#showcase" class="btn btn-glow me-3">Projects</a>
+        <a href="#contact" class="btn btn-outline-light">Contact</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT SECTION -->
+
+  <section id="about" class="about-section">
+    <div class="container">
+
+      <div class="row align-items-center">
+
+        <!-- Profile Image -->
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+          <div class="profile-wrapper">
+            <img src="assets/profile.jpeg" alt="Profile" class="profile-img">
+          </div>
+        </div>
+
+        <!-- About Text -->
+        <div class="col-md-8 text-center text-md-start">
+
+          <h4 class="about-greeting">Hello, I'm</h4>
+          <h2 class="fw-bold">Muhammad Reffi Fadillah</h2>
+
+          <p>
+            Saya adalah mahasiswa Sistem Informasi yang memiliki minat pada
+            pengembangan website dan perancangan basis data.
+            Saya menikmati proses membangun sistem dari nol,
+            mulai dari perencanaan struktur data hingga implementasi logika program.
+          </p>
+
+          <!-- Skills -->
+          <h5 class="mt-4">Skills</h5>
+
+          <div v-for="skill in skills" :key="skill.name" class="mb-3">
+            <div class="d-flex justify-content-between">
+              <span>{{ skill.name }}</span>
+              <span>{{ skill.percent }}%</span>
+            </div>
+
+            <div class="progress">
+              <div class="progress-bar bg-purple"
+                   :style="{ width: skill.percent + '%' }">
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="btn btn-glow me-3">Download CV</a>
+          <a href="#showcase" class="btn btn-outline-light">View Projects</a>
+
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="row mt-5 text-center">
+        <div class="col-md-4 mb-3">
+          <div class="glass-card">
+            <h2>3</h2>
+            <p>Total Projects</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="glass-card">
+            <h2>3</h2>
+            <p>Certificates</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="glass-card">
+            <h2>2</h2>
+            <p>Years Experience</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SHOWCASE SECTION -->
+  <section id="showcase" class="showcase">
+    <div class="container text-center">
+
+      <h2 class="mb-4">Portfolio Showcase</h2>
+      <p>Explore my journey through the projects I’ve worked on and the skills I continue to develop.</p>
+
+      <!-- Tabs -->
+      <div class="tabs mb-5">
+        <button :class="['tab-btn', activeTab==='project'?'active':'']"
+                @click="activeTab='project'">Projects</button>
+
+        <button :class="['tab-btn', activeTab==='certificate'?'active':'']"
+                @click="activeTab='certificate'">Certificates</button>
+
+        <button :class="['tab-btn', activeTab==='experience'?'active':'']"
+                @click="activeTab='experience'">Experience</button>
+      </div>
+
+      <!-- Content -->
+      <transition name="fade" mode="out-in">
+        <div :key="activeTab">
+
+          <!-- Default -->
+          <div v-if="!activeTab" class="py-5">
+            <p class="text-muted">Select a category above to see details.</p>
+          </div>
+
+          <!-- Projects -->
+          <div v-else-if="activeTab==='project'" class="row">
+            <div class="col-md-4 mb-4"
+                 v-for="project in projects"
+                 :key="project.title">
+              <div class="portfolio-card h-100 text-start">
+                <img :src="project.image" class="img-fluid rounded mb-3">
+                <h5>{{ project.title }}</h5>
+                <p>{{ project.desc }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certificates -->
+          <div v-else-if="activeTab==='certificate'" class="row">
+            <div class="col-md-4 mb-4"
+                 v-for="cert in certificates"
+                 :key="cert.title">
+              <div class="portfolio-card h-100 text-start">
+                <img :src="cert.image" class="img-fluid rounded mb-3">
+                <h5>{{ cert.title }}</h5>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div v-else class="row justify-content-center">
+            <div class="col-md-8 text-start">
+              <div v-for="exp in experiences"
+                   :key="exp.title"
+                   class="experience-item mb-4">
+                <h5>{{ exp.title }}</h5>
+                <small>{{ exp.year }}</small>
+                <p class="mt-2">{{ exp.desc }}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </transition>
+
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact text-center">
+    <div class="container">
+
+      <h2 class="mb-4">Contact Me</h2>
+
+      <div class="contact-card mx-auto">
+        <a href="mailto:reffi.fadillah01@email.com" class="contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          reffi.fadillah01@email.com
+        </a>
+
+        <a href="https://github.com/Refficmd"
+           target="_blank"
+           class="contact-item">
+          <i class="bi bi-github"></i>
+          github.com/Refficmd
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- VUE APP -->
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      typedText: "",
+      fullText: "Portfolio Website",
+      typingIndex: 0,
+      activeTab: null,
+
+      skills: [
+        { name: "Communication", percent: 90 },
+        { name: "Teamwork", percent: 85 },
+        { name: "Problem Solving", percent: 75 }
+      ],
+
+      projects: [
+        {
+          title: "Website Portfolio",
+          desc: "Website portofolio responsif berbasis Bootstrap dan Vue.",
+          image: "assets/project1.png"
+        },
+        {
+          title: "Infrastructure Project Management System",
+          desc: "Aplikasi desktop berbasis Java GUI.",
+          image: "assets/project2.png"
+        },
+        {
+          title: "Customized Linux Distribution",
+          desc: "Kustomisasi sistem operasi Ubuntu untuk industri.",
+          image: "assets/project3.png"
+        }
+      ],
+
+      certificates: [
+        { title: "Data Science Microsoft Fabric", image: "assets/cert1.jpg" },
+        { title: "Divisi Acara Insevent 2025", image: "assets/cert2.jpg" },
+        { title: "Divisi Acara Aplikasi 2025", image: "assets/cert3.jpg" }
+      ],
+
+      experiences: [
+        {
+          title: "Asisten Laboratorium PTI",
+          year: "2025",
+          desc: "Pengenalan konsep TI dan tools dasar."
+        },
+        {
+          title: "Asisten Laboratorium Basis Data",
+          year: "2026",
+          desc: "Mengajarkan ERD dan MySQL."
+        },
+        {
+          title: "Anggota Divisi Acara - 6 Kegiatan Kampus",
+          year: "2025-2026",
+          desc: "Perencanaan dan koordinasi teknis pelaksanaan acara tingkat fakultas dan universitas."
+        }
+      ]
+    }
+  },
+
+  mounted() {
+    this.typeEffect();
+  },
+
+  methods: {
+    typeEffect() {
+      if (this.typingIndex < this.fullText.length) {
+        this.typedText += this.fullText[this.typingIndex];
+        this.typingIndex++;
+        setTimeout(() => this.typeEffect(), 80);
+      }
+    }
+  }
+}).mount("#app");
+</script>
+
+<!-- NAV HIGHLIGHT -->
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-link");
+
+function updateActiveNav() {
+  let current = "";
+  const scrollY = window.pageYOffset;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.offsetHeight;
+
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("load", updateActiveNav);
+</script>
+
+</body>
+</html>
