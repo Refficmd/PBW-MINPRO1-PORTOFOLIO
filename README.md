@@ -19,30 +19,35 @@ Project ini dibuat untuk memenuhi tugas praktikum dengan ketentuan dokumentasi R
 ## 🖥 Struktur Section & Penjelasan Kode
 ---
 
-## 1. Navbar
+# 1. Navbar
 
+<p align="center">
 <img width="1899" height="74" alt="image" src="https://github.com/user-attachments/assets/f549e19b-5a8b-4ca2-86b6-24e67bc59c4d" />
+</p>
 
-Navbar berada pada bagian atas halaman dan tetap terlihat saat scroll (fixec-top). pada navbar terdapat menu: Home, About Portofolio dan Contact
+Navbar berada pada bagian atas halaman dan tetap terlihat saat scroll (fixed-top).
+Pada navbar terdapat menu: Home, About, Portfolio, dan Contact yang terhubung langsung ke masing-masing section menggunakan anchor link.
 
 ## 💻 Penjelasan Kode
 
-| Bagian           | Potongan Kode                                                               | Fungsi                                               |
-| ---------------- | --------------------------------------------------------------------------- | ---------------------------------------------------- |
-| Struktur Navbar  | `<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">` | Membuat navbar responsif dengan Bootstrap            |
-| Toggle Button    | `data-bs-toggle="collapse"`                                                 | Mengatur menu collapse di layar kecil                |
-| Nav Link         | `<a class="nav-link" href="#about">About</a>`                               | Navigasi antar section                               |
-| Scroll Highlight | `window.addEventListener("scroll", updateActiveNav);`                       | Memberikan efek aktif pada menu sesuai posisi scroll |
+| Bagian           | Potongan Kode                                                               | Fungsi                                                             |
+| ---------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Struktur Navbar  | `<nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">` | Membuat navbar responsif dengan Bootstrap dan tetap berada di atas |
+| Toggle Button    | `data-bs-toggle="collapse"`                                                 | Mengatur menu collapse ketika layar kecil                          |
+| Nav Link         | `<a class="nav-link" href="#about">About</a>`                               | Navigasi ke section tertentu                                       |
+| Scroll Highlight | `window.addEventListener("scroll", updateActiveNav);`                       | Memberikan efek aktif pada menu sesuai posisi scroll               |
 
-Navbar aktif saat scroll dikontrol oleh JavaScript yang membaca posisi section dan menambahkan class .active.
+Navbar aktif saat scroll dikontrol oleh JavaScript yang membaca posisi setiap section, lalu menambahkan class .active pada menu yang sesuai agar pengguna tahu sedang berada di bagian mana.
 
 ---
 
-## 2. Hero Section
+# 2. Hero Section
 
-<img width="1898" height="929" alt="image" src="https://github.com/user-attachments/assets/c3007af3-35a5-407f-995a-de06216ff122" />
+<img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/c3007af3-35a5-407f-995a-de06216ff122" />
 
-Bagian Home website dengan efek typing text dan tombol navigasi ke project dan contact.
+Bagian Home website dengan efek typing text serta tombol navigasi ke bagian project dan contact.
+
+Section ini menjadi tampilan pertama yang dilihat pengguna, sehingga dibuat lebih menarik dengan animasi dan warna gradasi.
 
 ## 💻 Penjelasan Kode
 
@@ -53,19 +58,20 @@ Bagian Home website dengan efek typing text dan tombol navigasi ke project dan c
 | Typing Effect | `setTimeout(() => this.typeEffect(), 80);`            | Mengatur kecepatan animasi    |
 | Gradient Text | `.gradient-text { background: linear-gradient(...) }` | Memberikan efek warna gradasi |
 
-Efek typing dijalankan saat Vue mounted menggunakan method typeEffect().
+Efek typing dijalankan saat Vue mounted() menggunakan method typeEffect() yang menambahkan huruf satu per satu hingga teks selesai ditampilkan.
 
 ---
 
-## 3. About Section
+# 3. About Section
 
-<img width="1897" height="927" alt="image" src="https://github.com/user-attachments/assets/b8f6e07a-8f79-4c4b-a2bc-cb20ac4977b6" />
+<img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/b8f6e07a-8f79-4c4b-a2bc-cb20ac4977b6" />
 
 Menampikan:
   - Foto profil
   - Deskripsi
   - Skils (Progress bar)
   - Statistik Pengalaman
+Section ini dibuat untuk memperkenalkan diri secara lebih detail serta menunjukkan kemampuan yang dimiliki.
 
 ## 💻 Penjelasan Kode
 
@@ -76,12 +82,12 @@ Menampikan:
 | Dynamic Width | `:style="{ width: skill.percent + '%' }"`     | Mengatur progress bar secara dinamis |
 | Glass Card    | `.glass-card { backdrop-filter: blur(8px); }` | Efek transparan blur                 |
 
-Skills diambil dari array Vue dan dirender otomatis menggunakan v-for.
+Skills diambil dari array Vue dan dirender otomatis menggunakan v-for, sehingga jika data ditambah atau diubah, tampilan akan ikut berubah tanpa perlu mengubah struktur HTML
 
 ---
-## 4. Showcase Section
+# 4. Showcase Section
 
-<img width="1899" height="928" alt="image" src="https://github.com/user-attachments/assets/df0e7408-38f5-4161-9e1e-7af02925c216" />
+<img width="1000" height="800" alt="image" src="https://github.com/user-attachments/assets/df0e7408-38f5-4161-9e1e-7af02925c216" />
 
 Memiliki 3 tab:
   - Projects
@@ -98,15 +104,18 @@ Konten dapat berubah sesuai tab yang dipilih
 | Loop Data          | `v-for="project in projects"`       | Menampilkan daftar project          |
 | Transition         | `<transition name="fade">`          | Memberikan animasi saat tab berubah |
 
-Section ini menggunakan conditional rendering vue untum menampilkan isi konten.
+Section ini menggunakan conditional rendering Vue untuk menampilkan isi konten berdasarkan nilai activeTab.
+Animasi transisi membuat perpindahan tab terasa lebih halus dan tidak kaku.
 
 ---
-## 5. Contact Section
+# 5. Contact Section
 
 Berisi:
   - Email
   - Link Github
   - Ikon Bootstrap
+    
+Section ini dibuat sederhana agar pengguna dapat langsung menghubungi atau melihat akun GitHub.
 
 ## 💻 Penjelasan Kode
 
@@ -128,9 +137,3 @@ Website ini menggunakan konsep:
 - ✨ Typing animation
 - 🔁 Dynamic tab transition
 - 🔗 Smooth scroll navigation
-
-Scroll Smooth diatur di css menggunakan:
-
-html {
-  scroll-behavior: smooth;
-}/>
